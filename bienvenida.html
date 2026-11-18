@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bienvenida</title>
+<link rel="stylesheet" href="styles.css">
+<style>
+  #btnSalir {
+    width: 100%;
+    padding: 12px;
+    font: inherit;
+    font-weight: 600;
+    color: var(--accent);
+    background: transparent;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  #btnSalir:hover { background: #eef3fb; }
+</style>
+</head>
+<body>
+  <main class="card">
+    <h1 id="saludo">Bienvenido</h1>
+    <p class="sub">Iniciaste sesión correctamente.</p>
+    <button type="button" id="btnSalir">Cerrar sesión</button>
+  </main>
+
+  <script>
+    const usuario = localStorage.getItem("usuario");
+
+    // Si alguien entra directo sin haber iniciado sesión, lo regresa al login
+    if (!usuario) {
+      window.location.href = "index.html";
+    } else {
+      document.getElementById("saludo").textContent = "Bienvenido, " + usuario;
+    }
+
+    document.getElementById("btnSalir").addEventListener("click", () => {
+      localStorage.removeItem("usuario");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
